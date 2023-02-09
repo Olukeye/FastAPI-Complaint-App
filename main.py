@@ -1,13 +1,12 @@
 from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
-# from routes import inventory, category, stock
-
+from routes import users
 
 app = FastAPI()
 
 
-# app.include_router(inventory.router)
+app.include_router(users.router)
 # app.include_router(category.router)
 # app.include_router(stock.router)
 

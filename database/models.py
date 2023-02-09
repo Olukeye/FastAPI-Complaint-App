@@ -1,3 +1,1 @@
-from models.inventory import create_new_inventory, update_inventory, get_one_inventory, get_all_inventories, get_one_inventory_image,get_all_inventories_images, create_new_inventory_iamge,update_inventory_images
-from models.categories import create_category, get_one_category, get_all_categories, update_category
-from models.stock import create_new_stock, update_stock, get_one_stock , get_all_stocks, get_one_stock_image, get_all_stocks_image, create_new_stock_image, update_stock_image
+from models.users import create_user, check_if_email_exist, chech_if_username_exist

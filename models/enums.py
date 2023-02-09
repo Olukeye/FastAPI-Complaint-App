@@ -1,6 +1,6 @@
-from enum import Enum
+from enum import Enum, unique
 
-
+@unique
 class RoleType(Enum):
     approver = "approver"
     complainer = "complainer"
