@@ -1,13 +1,14 @@
-from enum import Enum, unique
+import enum
+from sqlalchemy import Enum
 
-@unique
-class RoleType(Enum):
+
+class RoleType(enum.Enum):
     approver = "approver"
     complainer = "complainer"
     admin = "admin"
     
     
-class State(Enum):
+class State(enum.Enum):
     pending = "Pending"
     approved = "Approved"
     rejected = "Rejected"

@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 from module.users import create_a_user
 from schemas.users import CreateUserModel
-from Pydantic_schemas.response_models import ResponseModel
+from schemas.response_models import ResponseModel
 from database.db import  get_db
 
 router = APIRouter(tags = ['Users'])
