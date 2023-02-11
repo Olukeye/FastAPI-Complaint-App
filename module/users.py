@@ -9,19 +9,20 @@ from typing import Dict
 
 def create_a_user(db: Session, username:str=None, email:str=None, password:str=None, role:str=None, iban:str=None):
     username_check = chech_if_username_exist(db=db, username=username)
-    email_check = get_user_by_email(db=db, email=email)
+    email_check = check_if_email_exist(db=db, email=email)
     
-    hashed_password = hash(user.password)
-    user.password = hashed_password
+    hashed_password = hash(password)
+    password = hashed_password
     
-    if check_if_email_exist is not None:
+    if username_check is not None:
        raise HTTPException(status_code=400, detail= "Username already exist!")
     elif email_check is not None:
         raise HTTPException(status_code=404, detail= "Email already exist!")
     else:
         data = create_user(db=db, username=username, email=email, password=password, role=role, iban=iban)
     
-    return {
-        "message": "Successfully created a user",
-        "data": data
-    }
+        return {
+            "status":True,
+            "message": "Success",
+            "data": data
+        }

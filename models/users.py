@@ -1,6 +1,6 @@
 from sqlalchemy import Column, BigInteger, String
 from sqlalchemy.orm import Session
-from database.db import get_db, Base, create_customised_datetime
+from database.db import Base, create_customised_datetime
 from typing import Dict
 from models.enums import RoleType, Enum
 
@@ -12,7 +12,7 @@ class User(Base):
     username = Column(String, nullable=True)
     email = Column(String, unique=True, nullable=True)
     password = Column(String, nullable=True)
-    role = Column(Enum(RoleType), server_default=RoleType.complainer.name, nullable=True)
+    role = Column(Enum(RoleType), default=RoleType.complainer, nullable=False)
     iban = Column(String, nullable=True)
     created_at = Column(String, nullable=True)
     updated_at = Column(String, nullable=True)

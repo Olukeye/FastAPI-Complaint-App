@@ -1,8 +1,9 @@
 import enum
 from sqlalchemy import Enum
+# from enum import Enum
 
 
-class RoleType(enum.Enum):
+class RoleType(str, enum.Enum):
     approver = "approver"
     complainer = "complainer"
     admin = "admin"

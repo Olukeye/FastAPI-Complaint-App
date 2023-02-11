@@ -11,6 +11,6 @@ router = APIRouter(tags = ['Users'])
 
 
 
-@router.post("/user", response_model=ResponseModel)
-async def create_new_user(user:CreateUserModel, db:Session = Depends(get_db)):
-    return create_a_user(db=db, username=user.username, email=user.email, password=user.password, role=user.role, iban=user.iban)
+@router.post("/register", status_code=201,response_model=ResponseModel)
+async def register(field:CreateUserModel, db:Session = Depends(get_db)):
+    return create_a_user(db=db, username=field.username, email=field.email, password=field.password, role=field.role, iban=field.iban)
