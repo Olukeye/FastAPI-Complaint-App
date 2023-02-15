@@ -2,23 +2,28 @@ from fastapi import Depends, HTTPException, status
 from datetime import datetime, timedelta
 from jose import JWTError, jwt
 from fastapi.security import OAuth2PasswordBearer
-from pydantic_schemas.token import TokenData
+from schemas.token import TokenData
 from sqlalchemy.orm import Session
-from models.user import User
-from db.database import get_db
-from setttings.config import settings
+from models.users import User
+from database.db import get_db
+from settings.config import load_env_config
+
+
+env_var = load_env_config()
+
+
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
 
-SECRET_KEY = settings.secret_key
-ALGORITHM = settings.algorithm
-ACCESS_TOKEN_EXPIRE_MINUTE = settings. access_token_expire_minute
+SECRET_KEY = env_var['secret_key']
+ALGORITHM = env_var['algorithm']
+ACCESS_TOKEN_EXPIRE_MINUTE = env_var['access_token_expire_minute']
 
 # Login access for registered user
 def access_token(data: dict):
     to_encode = data.copy()
 
-    expireIn = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTE)
+    expireIn = datetime.utcnow() + timedelta(minutes=int(ACCESS_TOKEN_EXPIRE_MINUTE))
     to_encode.update({"exp": expireIn})
 
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, ALGORITHM)

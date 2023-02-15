@@ -11,11 +11,11 @@ def load_env_config():
     return {
         'server': os.getenv("DATABASE_SERVER"),
         'database': os.getenv("DATABASE"),
-        'database_user': os.getenv("DATABASE_USERNAME"),
-        'database_pass': os.getenv("DATABASE_PASSWORD"),
+        'access_token_expire_minute': os.getenv("ACCESS_TOKEN_EXPIRE_MINUTE"),
+        'algorithm': os.getenv("ALGORITHM"),
         'cleardb_database_url': os.getenv("CLEARDB_DATABASE_URL"),
         'database_string': os.getenv("DATABASE_STRING"),
-        # 'secret_key': os.getenv("ACCESS_SECRET_KEY"),
+        'secret_key': os.getenv("SECRET_KEY"),
         # 'password_salt': os.getenv("ACCESS_SALT"),
     }
 
