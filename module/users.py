@@ -2,7 +2,6 @@ from fastapi import FastAPI, HTTPException, status, Response
 from sqlalchemy.orm import Session
 from utils.hashVerify import hash
 from database.models import create_user, chech_if_username_exist, check_if_email_exist
-# from ..utils.oauth2 import get_current_user, verify_access_token
 from typing import Dict
 
 

@@ -1,14 +1,14 @@
 from fastapi import FastAPI, Request, status
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
-from routes import users, auth
+from routes import users, auth, complaints
 
 app = FastAPI()
 
 
 app.include_router(users.router)
 app.include_router(auth.router)
-# app.include_router(stock.router)
+app.include_router(complaints.router)
 
 
 # Middleware to catch actual internal response errors  
