@@ -28,3 +28,9 @@ def create_complainer(db:Session, title:str=None, description:str=None, image:st
     db.refresh(new_complainer)
     
     return new_complainer
+
+
+def complaints_status(db:Session, user:int):
+    get_complaints_status = db.query(Complaint).filter(Complaint.customer_id == user.id).all()
+    
+    return get_complaints_status

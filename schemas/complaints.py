@@ -17,3 +17,13 @@ class Complaint(BaseModel):
 class CreateComplaintModel(Complaint):
      pass
  
+class ComplaintOut(BaseModel):
+    title: str
+    description: str
+    image: str
+    amount: str
+    status: str
+    
+    class Config:
+        orm_mode = True
+        
