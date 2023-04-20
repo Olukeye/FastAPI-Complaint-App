@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 from models.users import User
 from database.db import get_db
 from settings.config import load_env_config
+from models.enums import RoleType, State
 
 
 env_var = load_env_config()
@@ -55,16 +56,21 @@ def get_current_user(token = Depends(oauth2_scheme), db: Session = Depends(get_d
 
     return user
 
-
+# What is the status of a user
 def get_user_status(current_user: User = Depends(get_current_user)):
-    if not current_user.status:
+    if not current_user.role:
             raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
 
 
+def is_complainer(current_user: User = Depends(get_user_status)):
+    if not current_user.role == RoleType.complainer:
+            raise HTTPException(status_code=400, detail="Only aComplainer is allowed to create a ticket")
+    return current_user
+
 
 def if_user_is_admin(current_user: User = Depends(get_user_status)):
-    if not current_user.role:
+    if not current_user.role == RoleType.admin:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You have no permission to Create a business yet!! ")
     
     return current_user
