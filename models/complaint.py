@@ -20,6 +20,11 @@ class Complaint(Base):
 
     
     
+    
+def get_all_complaints(db:Session):
+    all_complaints = db.query(Complaint).all()
+    return all_complaints
+    
 def create_complainer(db:Session, title:str=None, description:str=None, image:str=None, amount:int=0, status:str=None, user:int=0):
     new_complainer = Complaint(title=title, description=description, image=image, amount=amount, status=status, created_at=create_customised_datetime(), user=user,updated_at=create_customised_datetime())
     
@@ -28,7 +33,6 @@ def create_complainer(db:Session, title:str=None, description:str=None, image:st
     db.refresh(new_complainer)
     
     return new_complainer
-
 
 def complaints_status(db:Session, user:int):
     get_complaints_status = db.query(Complaint).filter(Complaint.customer_id == user.id).all()

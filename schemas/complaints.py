@@ -2,7 +2,7 @@ from pydantic import BaseModel,EmailStr, constr
 from database.db import create_customised_datetime
 from pydantic.types import conint
 from decimal import Decimal
-from typing import Optional
+from typing import Optional, List, Any
 from models.enums import  State
 
 
@@ -23,7 +23,5 @@ class ComplaintOut(BaseModel):
     image: str
     amount: str
     status: str
-    
     class Config:
         orm_mode = True
-        

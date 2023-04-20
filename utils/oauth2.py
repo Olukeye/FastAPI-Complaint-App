@@ -65,7 +65,7 @@ def get_user_status(current_user: User = Depends(get_current_user)):
 
 def is_complainer(current_user: User = Depends(get_user_status)):
     if not current_user.role == RoleType.complainer:
-            raise HTTPException(status_code=400, detail="Only aComplainer is allowed to create a ticket")
+            raise HTTPException(status_code=400, detail="Only a complainer is allowed to create a ticket")
     return current_user
 
 
