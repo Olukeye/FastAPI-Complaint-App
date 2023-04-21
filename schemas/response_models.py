@@ -6,4 +6,3 @@ class ResponseModel(BaseModel):
     status: bool
     message: str
     data: Optional[Any] = None
-    

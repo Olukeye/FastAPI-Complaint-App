@@ -68,9 +68,14 @@ def is_complainer(current_user: User = Depends(get_user_status)):
             raise HTTPException(status_code=400, detail="Only a complainer is allowed to create a ticket")
     return current_user
 
+def is_approver(current_user: User = Depends(get_user_status)):
+    if not current_user.role == RoleType.approver:
+            raise HTTPException(status_code=400, detail="Only a approver is allowed to create a ticket")
+    return current_user
+
 
 def if_user_is_admin(current_user: User = Depends(get_user_status)):
     if not current_user.role == RoleType.admin:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You have no permission to Create a business yet!! ")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You have no permission")
     
     return current_user

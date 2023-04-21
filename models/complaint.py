@@ -17,8 +17,6 @@ class Complaint(Base):
     created_at = Column(String, nullable=True)
     updated_at = Column(String, nullable=True)
     user = relationship("User")
-
-    
     
     
 def get_all_complaints(db:Session):
@@ -38,3 +36,12 @@ def complaints_status(db:Session, user:int):
     get_complaints_status = db.query(Complaint).filter(Complaint.customer_id == user.id).all()
     
     return get_complaints_status
+
+def delete_complaint(id:int, user:int,  db:Session):
+    del_complaint = db.query(Complaint).filter(Complaint.id == id)
+    
+    destroy = del_complaint.first()
+    del_complaint.delete()
+    db.commit()
+    
+    return  destroy

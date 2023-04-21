@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, status, Response
 from sqlalchemy.orm import Session
-from database.models import create_complainer, complaints_status, get_all_complaints
+from database.models import create_complainer, complaints_status, get_all_complaints, delete_complaint
 from models.enums import State
 from typing import Dict
 
@@ -31,3 +31,10 @@ def create_a_complaint(db:Session, title:str=None, user:int=0, customer_id:int=N
         "data":info
     }
     
+def delete_a_complaint(db:Session, user:int, id:int):
+   info = delete_complaint(id=id, user=user, db=db)
+   
+   return {
+        "status":True,
+        "message": "User Deleted Successfully"
+    }
