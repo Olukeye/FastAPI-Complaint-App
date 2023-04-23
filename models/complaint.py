@@ -46,8 +46,9 @@ def delete_complaint(id:int, user:int,  db:Session):
     
     return  destroy
 
-def approve_a_complaint(id:int, db:Session, status:str=Enum(State),values:Dict={}):
-    approver = db.query(Complaint).filter(Complaint.id == id).values()
+def approve_a_complaint(id:int, db:Session, status:str=State,values:Dict={}):
+    values['status']
+    approver = db.query(Complaint).filter(Complaint.id == id).update(values)
     
     db.commit()
     

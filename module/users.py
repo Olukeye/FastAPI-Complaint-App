@@ -35,7 +35,7 @@ def create_a_user(db: Session, username:str=None, email:str=None, password:str=N
             "data": data
         }
         
-def asign_a_role_to_user(db:Session, id:int, role:str=Enum(RoleType), values:Dict={}):
+def asign_a_role_to_user(db:Session, id:int, role:str=RoleType, values:Dict={}):
     data = asign_role_to_user(db=db, id=id, role=role, values=values)
     
     if not data:

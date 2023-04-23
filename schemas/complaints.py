@@ -25,3 +25,8 @@ class ComplaintOut(BaseModel):
     status: str
     class Config:
         orm_mode = True
+        
+class ApproveModel(BaseModel):
+    status: State
+    class Config:
+        orm_mode = True
