@@ -45,3 +45,10 @@ def delete_complaint(id:int, user:int,  db:Session):
     db.commit()
     
     return  destroy
+
+def approve_a_complaint(id:int, db:Session, status:str=Enum(State),values:Dict={}):
+    approver = db.query(Complaint).filter(Complaint.id == id).values()
+    
+    db.commit()
+    
+    return approver

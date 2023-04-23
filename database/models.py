@@ -1,2 +1,2 @@
-from models.users import create_user, check_if_email_exist, chech_if_username_exist
+from models.users import create_user, check_if_email_exist, chech_if_username_exist, get_all_users_or_by_their_email, asign_role_to_user
 from models.complaint import create_complainer, complaints_status, get_all_complaints, delete_complaint

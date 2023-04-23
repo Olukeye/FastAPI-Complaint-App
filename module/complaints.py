@@ -36,5 +36,6 @@ def delete_a_complaint(db:Session, user:int, id:int):
    
    return {
         "status":True,
-        "message": "User Deleted Successfully"
+        "message": "User Deleted Successfully",
+        "data":info
     }

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, BigInteger, String
 from sqlalchemy.orm import Session
 from database.db import Base, create_customised_datetime
-from typing import Dict
+from typing import Dict, Optional
 from models.enums import RoleType, Enum
 
 
@@ -18,6 +18,10 @@ class User(Base):
     updated_at = Column(String, nullable=True)
     
     
+def get_all_users_or_by_their_email(db:Session, query: Optional[str]=""):
+    users = db.query(User).filter(User.email.contains(query)).all()
+    return users
+
 def check_if_email_exist(db:Session, email:str=None):
     check_email = db.query(User).filter(User.email == email).first()
     
@@ -36,4 +40,12 @@ def create_user(db: Session, username:str=None, email:str=None, password:str=Non
     db.refresh(new_user)
     
     return new_user
+
+def asign_role_to_user(db:Session, id:int=0, role:str=Enum(RoleType), values:Dict={}):
+    values["role"]
+    makeRole = db.query(User).filter(User.id == id).update(values)
+    
+    db.commit()
+    
+    return makeRole
     
